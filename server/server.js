@@ -28,12 +28,9 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    // Create Gemini conversation with previous messages
     const chat = ai.chats.create({
       model: "gemini-3.5-flash-lite",
-
       history: history,
-
       config: {
         systemInstruction: `
           You are TechNova AI, the official virtual assistant of TechNova, an AI software development agency based in Chattogram, Bangladesh.
@@ -51,7 +48,6 @@ app.post("/api/chat", async (req, res) => {
       },
     });
 
-    // Send the new message
     const response = await chat.sendMessage({
       message: message,
     });
@@ -69,7 +65,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
   console.log(`TechNova AI Server running on port ${PORT}`);
