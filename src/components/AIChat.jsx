@@ -59,20 +59,19 @@ function AIChat() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/chat",
+        "https://technova-gvyf.onrender.com/api/chat",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-         body: JSON.stringify({
-  message: userMessage,
-
-  history: messages.slice(-9).map((msg) => ({
-    role: msg.sender === "ai" ? "model" : "user",
-    parts: [{ text: msg.text }],
-  })),
-}),
+          body: JSON.stringify({
+            message: userMessage,
+            history: messages.slice(-9).map((msg) => ({
+              role: msg.sender === "ai" ? "model" : "user",
+              parts: [{ text: msg.text }],
+            })),
+          }),
         }
       );
 
